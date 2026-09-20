@@ -1,0 +1,83 @@
+/* Tailwind v4, scoped: import theme + utilities but NOT preflight, so Tailwind's
+   global reset can never touch the existing hand-written dashboard CSS.
+   (Magic UI / Backlit components need v4 utilities like bg-linear-*, mask-*.) */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:is(.dark *));
+
+/* Make Tailwind color utilities (bg-primary, border-border, …) resolve to the
+   shadcn tokens below, so registry components theme correctly. */
+@theme inline {
+  --color-background: var(--sc-background);
+  --color-foreground: var(--sc-foreground);
+  --color-card: var(--sc-card);
+  --color-card-foreground: var(--sc-card-foreground);
+  --color-primary: var(--sc-primary);
+  --color-primary-foreground: var(--sc-primary-foreground);
+  --color-secondary: var(--sc-secondary);
+  --color-secondary-foreground: var(--sc-secondary-foreground);
+  --color-muted: var(--sc-muted);
+  --color-muted-foreground: var(--sc-muted-foreground);
+  --color-accent: var(--sc-accent);
+  --color-accent-foreground: var(--sc-accent-foreground);
+  --color-border: var(--sc-border);
+  --color-input: var(--sc-input);
+  --color-ring: var(--sc-ring);
+  --radius-lg: var(--sc-radius);
+  --radius-md: calc(var(--sc-radius) - 2px);
+  --radius-sm: calc(var(--sc-radius) - 4px);
+}
+
+/* shadcn design tokens. Kept distinct from styles.css tokens (--bg/--ink/…),
+   so nothing here disturbs the existing dashboard. */
+/* Warm monochrome, matching the hand-written dashboard tokens in styles.css.
+   The 21st.dev components read these, so they inherit the palette instead of
+   arriving in shadcn's default cool slate. */
+:root {
+  --sc-background: hsl(60 9% 98%);       /* #fbfbfa */
+  --sc-foreground: hsl(0 0% 7%);         /* #111111 */
+  --sc-card: hsl(0 0% 100%);
+  --sc-card-foreground: hsl(0 0% 7%);
+  --sc-popover: hsl(0 0% 100%);
+  --sc-popover-foreground: hsl(0 0% 7%);
+  --sc-primary: hsl(0 0% 7%);            /* near-black: the primary action is not coloured */
+  --sc-primary-foreground: hsl(0 0% 100%);
+  --sc-secondary: hsl(60 6% 96%);
+  --sc-secondary-foreground: hsl(0 0% 7%);
+  --sc-muted: hsl(60 6% 96%);            /* #f4f4f2 */
+  --sc-muted-foreground: hsl(45 3% 47%); /* #787774 */
+  --sc-accent: hsl(60 6% 96%);
+  --sc-accent-foreground: hsl(0 0% 7%);
+  --sc-destructive: hsl(1 55% 40%);
+  --sc-border: hsl(0 0% 92%);            /* #eaeaea, the one hairline */
+  --sc-input: hsl(0 0% 92%);
+  --sc-ring: hsl(0 0% 80%);
+  --sc-radius: 0.5rem;
+}
+/* Dark "backlit" island — applied only to the Ask surface, never globally. */
+.backlit {
+  --sc-background: hsl(250 40% 6%);
+  --sc-foreground: hsl(240 30% 96%);
+  --sc-card: hsl(250 34% 9%);
+  --sc-card-foreground: hsl(240 30% 96%);
+  --sc-primary: hsl(258 90% 70%);
+  --sc-primary-foreground: hsl(0 0% 100%);
+  --sc-secondary: hsl(250 24% 16%);
+  --sc-secondary-foreground: hsl(240 30% 96%);
+  --sc-muted: hsl(250 24% 16%);
+  --sc-muted-foreground: hsl(244 16% 70%);
+  --sc-accent: hsl(258 90% 70%);
+  --sc-border: hsl(255 30% 24%);
+  --sc-input: hsl(255 30% 24%);
+  --sc-ring: hsl(258 90% 70%);
+}
+
+@keyframes shimmer-slide { to { transform: translate(calc(100cqw - 100%), 0); } }
+@keyframes spin-around {
+  0% { transform: translateZ(0) rotate(0); }
+  15%, 35% { transform: translateZ(0) rotate(90deg); }
+  65%, 85% { transform: translateZ(0) rotate(270deg); }
+  100% { transform: translateZ(0) rotate(360deg); }
+}

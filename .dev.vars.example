@@ -1,0 +1,21 @@
+# Copy to `.dev.vars` for local dev (wrangler reads it automatically).
+# In production set these as environment secrets. NEVER commit real values.
+
+# Gemini (Ask tab + freshness free-text) — model MUST be gemini-3.5-flash+
+GEMINI_API_KEY=xxx
+GEMINI_MODEL=gemini-3.5-flash
+
+# SerpApi (dormant insight endpoints; optional)
+SERPAPI_KEY=xxx
+
+# Ahrefs API v3 (one-time freshness back-history scripts only; NOT used at runtime)
+AHREFS_TOKEN=xxx
+
+# Google Search Console OAuth (runtime: auto-refresh ingest + URL keyword drawer)
+# Desktop-app OAuth client; refresh token must have webmasters.readonly scope.
+GSC_CLIENT_ID=xxx.apps.googleusercontent.com
+GSC_CLIENT_SECRET=xxx
+GSC_REFRESH_TOKEN=xxx
+
+# Strapi CMS (read-only) — daily freshness pull
+STRAPI_TOKEN=xxx

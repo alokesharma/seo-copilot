@@ -1,0 +1,37 @@
+node_modules/
+.wrangler/
+secrets/
+.dev.vars
+.DS_Store
+/tmp-sql/
+dist/
+scripts/shots/
+scripts/_shots.mjs
+scripts/21st/
+*.bak-*
+*.bak.*
+data/*.csv
+
+# Site-specific / one-off scripts — not part of the shipped tool
+scripts/freshness-strapi.mjs
+scripts/cms-published.mjs
+scripts/freshness-pilot.mjs
+scripts/freshness-recover.mjs
+scripts/freshness-repass.mjs
+scripts/freshness-restore.mjs
+scripts/freshness-reverdict.mjs
+scripts/crawl-blindspots.mjs
+scripts/seed-demo.mjs
+scripts/convo-test.mjs
+scripts/ui-convo.mjs
+scripts/shot*.mjs
+scripts/crop.mjs
+prototypes/
+public/app.js
+public/index.html
+HANDOFF.md
+data/*.json
+docs/weekly-brief-mailer.gs
+
+# local database journals
+data/*.sqlite*

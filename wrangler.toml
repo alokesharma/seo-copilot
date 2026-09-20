@@ -1,0 +1,12 @@
+# CF Pages + D1. Local dev and prod use the SAME binding/name,
+# so `wrangler pages dev` and the Node scripts share one local DB.
+name = "seo-copilot"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "seo-copilot"
+# Placeholder for local dev. Replace with the real id from
+# `wrangler d1 create seo-copilot` before `npm run deploy`.
+database_id = "local-dev-placeholder"
